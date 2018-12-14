@@ -1,8 +1,8 @@
 [
   {
+    "repository": "KudProject/kernel_asus_sdm660",
+    "target_path": "kernel/asus/sdm660",
     "remote": "github",
-    "repository": "shakalaca/android_kernel_asus_zb602kl",
-    "revision": "master",
-    "target_path": "kernel/asus/X00T"
+    "revision": "lineage-16.0"
   }
 ]
