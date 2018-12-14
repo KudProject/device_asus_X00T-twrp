@@ -43,6 +43,7 @@ TARGET_KERNEL_CONFIG := X00T_defconfig
 TARGET_KERNEL_SOURCE := kernel/asus/sdm660
 
 TARGET_HW_DISK_ENCRYPTION := true
+TARGET_CRYPTFS_HW_PATH := vendor/qcom/opensource/cryptfs_hw
 
 # TWRP-Specific
 TW_THEME := portrait_hdpi
