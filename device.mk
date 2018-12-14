@@ -14,8 +14,6 @@
 # limitations under the License.
 #
 
-$(call inherit-product, build/make/target/product/product_launched_with_o.mk)
-
 # For android_filesystem_config.h
 PRODUCT_PACKAGES += \
     fs_config_files \
