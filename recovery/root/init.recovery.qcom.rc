@@ -3,3 +3,8 @@ on init
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
 
     start qcom-usb-sh
+
+on boot
+    # Enable DT2W
+    chown system system /sys/kernel/touchpanel/dclicknode
+    write /sys/kernel/touchpanel/dclicknode 1
