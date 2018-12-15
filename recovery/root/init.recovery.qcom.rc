@@ -2,7 +2,4 @@ on init
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
 
-    insmod /sbin/texfat.ko
-    insmod /sbin/tntfs.ko
-
     start qcom-usb-sh
