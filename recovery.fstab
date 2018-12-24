@@ -1,7 +1,7 @@
 # mount_point   fstype    device                                             flags
 /system         ext4      /dev/block/bootdevice/by-name/system
 /system_image   emmc      /dev/block/bootdevice/by-name/system               flags=flashimg=1
-/vendor         ext4      /dev/block/bootdevice/by-name/vendor               flags=display="Vendor";mounttodecrypt;backup=1
+/vendor         ext4      /dev/block/bootdevice/by-name/vendor               flags=display="Vendor";mounttodecrypt;backup=1;wipeingui
 /vendor_image   emmc      /dev/block/bootdevice/by-name/vendor               flags=flashimg=1
 /data           ext4      /dev/block/bootdevice/by-name/userdata             flags=fsflags="inline_xattr,nosuid,nodev,noatime,nodiratime,discard";encryptable=footer
 /cache          ext4      /dev/block/bootdevice/by-name/cache
