@@ -1,6 +1,6 @@
 # Bootloader
 TARGET_NO_BOOTLOADER := true
-TARGET_BOOTLOADER_BOARD_NAME := sdm660
+TARGET_BOOTLOADER_BOARD_NAME := sdm636
 
 # Platform
 TARGET_BOARD_PLATFORM := sdm660
@@ -48,6 +48,9 @@ TARGET_KERNEL_SOURCE := kernel/asus/sdm660
 TARGET_HW_DISK_ENCRYPTION := true
 TARGET_CRYPTFS_HW_PATH := vendor/qcom/opensource/cryptfs_hw
 
+# Recovery variant
+RECOVERY_VARIANT := twrp
+
 # TWRP-Specific
 TW_THEME := portrait_hdpi
 TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
@@ -56,8 +59,6 @@ TW_DEFAULT_BRIGHTNESS := 178
 TW_EXCLUDE_DEFAULT_USB_INIT := true
 TW_INCLUDE_CRYPTO := true
 TW_CRYPTO_USE_SYSTEM_VOLD := qseecomd hwservicemanager keymaster-3-0
-TW_INCLUDE_NTFS_3G := true
-TW_NO_EXFAT_FUSE := true
 
 # Correct time
 TARGET_RECOVERY_QCOM_RTC_FIX := true
@@ -69,6 +70,7 @@ TW_INPUT_BLACKLIST := "hbtp_vm"
 
 # Extra configurations
 TW_EXTRA_LANGUAGES := true
+TW_NO_EXFAT_FUSE := true
 TW_EXCLUDE_SUPERSU := true
 
 # Fix access denied issue
