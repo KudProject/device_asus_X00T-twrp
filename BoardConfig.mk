@@ -71,7 +71,7 @@ TW_INPUT_BLACKLIST := "hbtp_vm"
 # Extra configurations
 TW_EXTRA_LANGUAGES := true
 TW_NO_EXFAT_FUSE := true
-TW_EXCLUDE_SUPERSU := true
+TW_EXCLUDE_TWRPAPP := true
 
 # Fix access denied issue
 BOARD_SEPOLICY_DIRS += device/asus/X00T/sepolicy
