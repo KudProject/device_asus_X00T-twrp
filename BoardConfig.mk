@@ -58,7 +58,6 @@ TW_MAX_BRIGHTNESS := 255
 TW_DEFAULT_BRIGHTNESS := 178
 TW_EXCLUDE_DEFAULT_USB_INIT := true
 TW_INCLUDE_CRYPTO := true
-TW_CRYPTO_USE_SYSTEM_VOLD := qseecomd hwservicemanager keymaster-3-0
 
 # Correct time
 TARGET_RECOVERY_QCOM_RTC_FIX := true
@@ -70,16 +69,13 @@ TW_INPUT_BLACKLIST := "hbtp_vm"
 
 # Extra configurations
 TW_EXTRA_LANGUAGES := true
+TW_OREO_MR1_F2FS := true
 TW_NO_EXFAT_FUSE := true
 TW_EXCLUDE_TWRPAPP := true
+TW_INCLUDE_CRYPTO_FBE := false
 
 # Fix access denied issue
 BOARD_SEPOLICY_DIRS += device/asus/X00T/sepolicy
 
-# Fix error using mke2fs
-TW_RECOVERY_ADDITIONAL_RELINK_FILES := \
-    $(OUT)/system/lib64/libext2_misc.so
-
-# For decrypting /data, we need to hack recovery.img and inject new os and
-# security version
-BOARD_CUSTOM_BOOTIMG_MK := device/asus/X00T/boot.mk
+# Set proper platform security patch so TWRP can decrypt /data
+PLATFORM_SECURITY_PATCH := 2018-11-01
