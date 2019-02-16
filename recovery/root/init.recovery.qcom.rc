@@ -7,6 +7,9 @@ on init
     chmod 0664 /dev/ion
     chown system system /dev/ion
 
+    insmod /sbin/texfat.ko
+    insmod /sbin/tntfs.ko
+
 on fs
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
@@ -47,13 +50,13 @@ service keystore /sbin/keystore /data/misc/keystore
     disabled
     seclabel u:r:recovery:s0
 
-service gatekeeper-1-0 /sbin/android.hardware.gatekeeper@1.0-service
+service gatekeeper-1-0 /sbin/android.hardware.gatekeeper@1.0-service-qti
     user root
     group root
     disabled
     seclabel u:r:recovery:s0
 
-service keymaster-3-0 /sbin/android.hardware.keymaster@3.0-service
+service keymaster-3-0 /sbin/android.hardware.keymaster@3.0-service-qti
     user root
     group root
     disabled
@@ -63,10 +66,11 @@ on boot
     # Workaround for adb not coming up
     setprop sys.usb.config mtp,adb
     setprop sys.usb.config adb
-    # Synaptics DSX RMI Node
-    chown system system /sys/devices/soc/c175000.i2c/i2c-1/1-0020/input/input2/wake_gesture
-    chmod 0644 /sys/devices/soc/c175000.i2c/i2c-1/1-0020/input/input2/wake_gesture
-    write /sys/devices/soc/c175000.i2c/i2c-1/1-0020/input/input2/wake_gesture 1
+
+    # Double tap to wake
+    chown system system /proc/tpd_gesture
+    chmod 644 /proc/tpd_gesture
+    write /proc/tpd_gesture 1
 
 on property:crypto.ready=0
     stop sbinqseecomd
