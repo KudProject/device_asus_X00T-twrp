@@ -96,3 +96,8 @@ TW_THEME := portrait_hdpi
 TW_SCREEN_BLANK_ON_BOOT := true
 TW_USE_TOOLBOX := true
 TW_NO_EXFAT_FUSE := true
+
+# 3rd-party TWRP build flags
+TW_OREO_MR1_F2FS := true
+TW_EXCLUDE_TWRPAPP := true
+TW_INCLUDE_CRYPTO_FBE := false
