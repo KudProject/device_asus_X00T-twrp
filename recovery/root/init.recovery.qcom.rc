@@ -7,9 +7,6 @@ on init
     chmod 0664 /dev/ion
     chown system system /dev/ion
 
-    insmod /sbin/texfat.ko
-    insmod /sbin/tntfs.ko
-
 on fs
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
