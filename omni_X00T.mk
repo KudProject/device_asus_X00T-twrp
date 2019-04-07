@@ -32,7 +32,12 @@ PRODUCT_BRAND := asus
 PRODUCT_MODEL := ASUS_X00TD
 PRODUCT_MANUFACTURER := asus
 
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.treble.enabled=true \
+    sys.usb.controller=a800000.dwc3 \
+    sys.usb.rmnet.func.name=rmnet_bam \
+    sys.usb.rndis.func.name=rndis_bam
+
 # for stock ROM
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.config.CID=CID_ERROR
-
