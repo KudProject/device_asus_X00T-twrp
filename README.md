@@ -5,7 +5,7 @@ For building TWRP for ASUS ZenFone Max Pro (M1) ONLY
 To compile:
 
 ```
-. build/envsetup.sh && breakfast X00T eng && m recoveryimage -j$(nproc --all)
+. build/envsetup.sh && breakfast X00T eng && mka recoveryimage
 ```
 
-Kernel source: [KudProject/kernel_asus_sdm660](https://github.com/KudProject/kernel_asus_sdm660/tree/android-8.1)
+Kernel source: [KudProject/kernel_asus_sdm660](https://github.com/KudProject/kernel_asus_sdm660/tree/android-9.0)
