@@ -40,4 +40,5 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # for stock ROM
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.CID=CID_ERROR
+    ro.config.CID=CID_ERROR \
+    ro.hq.project=ZQL1650
