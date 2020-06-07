@@ -50,6 +50,10 @@ TARGET_NO_BOOTLOADER := true
 TARGET_CRYPTFS_HW_PATH := vendor/qcom/opensource/commonsys/cryptfs_hw
 TARGET_HW_DISK_ENCRYPTION := true
 
+# Init
+TARGET_INIT_VENDOR_LIB := libinit_X00T
+TARGET_RECOVERY_DEVICE_MODULES := libinit_X00T
+
 # Kernel
 BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200,n8 androidboot.console=ttyMSM0 earlycon=msm_serial_dm,0xc170000
 BOARD_KERNEL_CMDLINE += androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3
