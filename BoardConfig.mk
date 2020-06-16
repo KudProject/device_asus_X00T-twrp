@@ -23,6 +23,10 @@
 # *not* include it on all devices, so it is safe even with hardware-specific
 # components.
 
+# Security patch -- 16.2017.2005.082
+# NOTE: Only bump when necessary
+PLATFORM_SECURITY_PATCH := 2020-05-05
+
 # Architecture
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
