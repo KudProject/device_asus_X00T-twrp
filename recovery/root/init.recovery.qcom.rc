@@ -64,15 +64,13 @@ on boot
     setprop sys.usb.config mtp,adb
     setprop sys.usb.config adb
 
+    # Set ASUS-specific properties
+    exec u:r:recovery:s0 root root -- /sbin/set_version.sh
+
     # Double tap to wake
     chown system system /proc/tpd_gesture
     chmod 644 /proc/tpd_gesture
     write /proc/tpd_gesture 1
-
-# Set ASUS-specific SKU and version
-# Apparently they need to be set late at boot; weird flex but OK
-on property:init.svc.adbd=stopped
-    exec u:r:recovery:s0 root root -- /sbin/set_version.sh
 
 on property:crypto.ready=0
     stop sbinqseecomd
