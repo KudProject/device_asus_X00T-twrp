@@ -5,7 +5,7 @@
 set -e
 
 asus_sku=WW
-asus_version=16.2017.2005.082
+asus_version=16.2017.2009.087
 
 mount -t ext4 /dev/block/bootdevice/by-name/system /system
 
