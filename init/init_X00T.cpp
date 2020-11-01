@@ -28,20 +28,16 @@
  */
 
 #include <cstdlib>
-#include <unistd.h>
-#include <fcntl.h>
-#include <android-base/logging.h>
 #include <android-base/properties.h>
 
 #include "property_service.h"
-#include "log.h"
 #include <string>
 #include <fstream>
 
 namespace android {
 namespace init {
 
-void NFC_check()
+void vendor_load_properties()
 {
     // Check NFC
     std::ifstream infile("/proc/NFC_CHECK");
@@ -54,9 +50,5 @@ void NFC_check()
         property_set("ro.hq.support.nfc", "0");
 }
 
-void vendor_load_properties()
-{
-    NFC_check();
-}
 }  // namespace init
 }  // namespace android
