@@ -2,8 +2,6 @@
 # Copyright (C) 2019-2020 KudProject Development
 # SPDX-License-Identifier: GPL-3.0-or-later OR Apache-2.0
 
-set -e
-
 asus_sku=WW
 asus_version=16.2017.2009.087
 
@@ -11,7 +9,8 @@ recLog() { echo "[kp] $1" >>/tmp/recovery.log; }
 
 mount -t ext4 /dev/block/bootdevice/by-name/system /system
 
-asus_prop=$(grep -E 'asus.sku|asus.version' /system/build.prop)
+[ -f "/system/system/build.prop" ] && system_root=/system
+asus_prop=$(grep -E 'asus.sku|asus.version' $system_root/system/build.prop 2>/dev/null)
 if [ -n "$asus_prop" ]; then
     echo "$asus_prop" | sed -e 's/ /\n/' > /tmp/asus.prop
     asus_sku=$(grep sku /tmp/asus.prop | cut -d'=' -f2)
