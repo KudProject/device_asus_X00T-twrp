@@ -7,6 +7,8 @@ set -e
 asus_sku=WW
 asus_version=16.2017.2009.087
 
+recLog() { echo "[kp] $1" >>/tmp/recovery.log; }
+
 mount -t ext4 /dev/block/bootdevice/by-name/system /system
 
 asus_prop=$(grep -E 'asus.sku|asus.version' /system/build.prop)
@@ -16,7 +18,7 @@ if [ -n "$asus_prop" ]; then
     asus_version=$(grep version /tmp/asus.prop | cut -d'=' -f2)
     rm /tmp/asus.prop
 else
-    echo "[kp] custom firmware detected or no ASUS version found; setting default values" >> /tmp/recovery.log
+    recLog "custom firmware detected or no ASUS version found; setting default values"
 fi
 
 setprop ro.build.asus.sku "$asus_sku"
@@ -24,4 +26,4 @@ setprop ro.build.asus.version "$asus_version"
 
 umount /system
 
-echo "[kp] setting ASUS version done." >> /tmp/recovery.log
+recLog "setting ASUS version done"
