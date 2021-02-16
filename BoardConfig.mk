@@ -114,4 +114,7 @@ TW_RECOVERY_ADDITIONAL_RELINK_FILES += $(TARGET_OUT_SHARED_LIBRARIES)/libxml2.so
 
 TW_EXCLUDE_TWRPAPP := true
 
+# TWRP extra version
+TW_DEVICE_VERSION ?= 4.4
+
 -include vendor/kud/config/recovery.mk
