@@ -23,10 +23,6 @@
 # *not* include it on all devices, so it is safe even with hardware-specific
 # components.
 
-# Security patch -- 16.2017.2009.087
-# NOTE: Only bump when necessary
-PLATFORM_SECURITY_PATCH := 2020-09-05
-
 # Architecture
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
@@ -47,8 +43,8 @@ TARGET_BOOTLOADER_BOARD_NAME := sdm660
 TARGET_NO_BOOTLOADER := true
 
 # Crypto
-TARGET_CRYPTFS_HW_PATH := vendor/qcom/opensource/commonsys/cryptfs_hw
-TARGET_HW_DISK_ENCRYPTION := true
+TW_INCLUDE_CRYPTO := true
+TW_INCLUDE_FBE := true
 
 # Init
 TARGET_INIT_VENDOR_LIB := libinit_X00T
@@ -70,6 +66,10 @@ TARGET_PREBUILT_KERNEL := device/asus/X00T/prebuilt/Image.gz-dtb
 # Platform
 TARGET_BOARD_PLATFORM := sdm660
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno509
+
+# Encryption
+PLATFORM_VERSION := 99
+PLATFORM_SECURITY_PATCH := 2099-12-31
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 262144
@@ -97,7 +97,6 @@ TARGET_RECOVERY_QCOM_RTC_FIX := true
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TW_EXCLUDE_DEFAULT_USB_INIT := true
 TW_EXTRA_LANGUAGES := true
-TW_INCLUDE_CRYPTO := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_MAX_BRIGHTNESS := 255
 TW_THEME := portrait_hdpi
