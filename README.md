@@ -8,4 +8,4 @@ To compile:
 . build/envsetup.sh && breakfast X00T eng && mka recoveryimage
 ```
 
-Kernel source: [asus-sdm660-4.14/kernel_asus_sdm660-4.14](https://gitlab.com/asus-sdm660-4.14/kernel_asus_sdm660-4.14/tree/lineage-17.1-4.14)
+Kernel source: [KudProject/kernel_asus_sdm660-4.14](https://github.com/KudProject/kernel_asus_sdm660-4.14/tree/android-9.0)
