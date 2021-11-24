@@ -14,55 +14,45 @@ on fs
     mount vfat /dev/block/bootdevice/by-name/modem /firmware ro shortname=lower uid=1000 gid=1000 dmask=227 fmask=337
     setprop crypto.ready 1
 
-# separate copy needed to use /sbin/linker64 instead of /system/bin/linker64
-service sbinqseecomd /sbin/qseecomd
+service qseecomd /system/bin/qseecomd
     user root
     group root
     disabled
+    setenv LD_LIBRARY_PATH /vendor/lib64:/system/lib64
     seclabel u:r:recovery:s0
 
-service hwservicemanager /sbin/hwservicemanager
-    user root
-    group root
-    disabled
-    onrestart setprop hwservicemanager.ready false
-    seclabel u:r:recovery:s0
-
-service servicemanager /sbin/servicemanager
-    user root
-    group root readproc
-    disabled
-    seclabel u:r:recovery:s0
-
-service keystore_auth /sbin/keystore_auth
+service keystore_auth /system/bin/keystore_auth
     oneshot
     user system
     group root
     disabled
     seclabel u:r:recovery:s0
 
-service keystore /sbin/keystore /tmp/misc/keystore
+service keystore /system/bin/keystore /tmp/misc/keystore
     user root
     group root drmrpc readproc
     disabled
     seclabel u:r:recovery:s0
 
-service gatekeeper-1-0 /sbin/android.hardware.gatekeeper@1.0-service-qti
+service gatekeeper-1-0 /system/bin/android.hardware.gatekeeper@1.0-service-qti
     user root
     group root
     disabled
+    setenv LD_LIBRARY_PATH /vendor/lib64:/system/lib64
     seclabel u:r:recovery:s0
 
-service keymaster-3-0 /sbin/android.hardware.keymaster@3.0-service-qti
+service keymaster-3-0 /system/bin/android.hardware.keymaster@3.0-service-qti
     user root
     group root
     disabled
+    setenv LD_LIBRARY_PATH /vendor/lib64:/system/lib64
     seclabel u:r:recovery:s0
 
-service vibrator-1-2 /sbin/vendor.qti.hardware.vibrator@1.2-service
+service vibrator-1-2 /system/bin/vendor.qti.hardware.vibrator@1.2-service
     user root
     group root
     disabled
+    setenv LD_LIBRARY_PATH /vendor/lib64:/system/lib64
     seclabel u:r:recovery:s0
 
 on boot
@@ -71,7 +61,7 @@ on boot
     setprop sys.usb.config adb
 
     # Set ASUS-specific properties
-    exec u:r:recovery:s0 root root -- /sbin/set_version.sh
+    #exec u:r:recovery:s0 root root -- /system/bin/set_version.sh
 
     start vibrator-1-2
 
@@ -81,18 +71,14 @@ on boot
     write /proc/tpd_gesture 1
 
 on property:crypto.ready=0
-    stop sbinqseecomd
+    stop qseecomd
     stop keymaster-3-0
     stop gatekeeper-1-0
-    stop hwservicemanager
     stop keystore
-    stop servicemanager
 
 on property:crypto.ready=1
-    start sbinqseecomd
+    start qseecomd
 
 on property:vendor.sys.listeners.registered=true
-    start hwservicemanager
     start keymaster-3-0
     start gatekeeper-1-0
-    start servicemanager
