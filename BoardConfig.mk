@@ -117,4 +117,5 @@ TW_EXCLUDE_TWRPAPP := true
 # TWRP extra version
 TW_DEVICE_VERSION ?= 4.14
 
+-include $(DEVICE_PATH)/BoardConfigSHRP.mk
 -include vendor/kud/config/recovery.mk
