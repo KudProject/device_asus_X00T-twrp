@@ -112,6 +112,7 @@ TW_SCREEN_BLANK_ON_BOOT := true
 TW_SUPPORT_INPUT_1_2_HAPTICS := true
 TW_INCLUDE_NTFS_3G := true
 TW_NO_EXFAT_FUSE := true
+TW_EXCLUDE_APEX := true
 
 TARGET_RECOVERY_DEVICE_MODULES += \
     android.system.suspend@1.0 \
