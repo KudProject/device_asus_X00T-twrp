@@ -143,7 +143,7 @@ TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
 TW_EXCLUDE_TWRPAPP := true
 
 # TWRP extra version
-TW_DEVICE_VERSION ?= 4.14
+TW_DEVICE_VERSION ?= k4.14
 
 -include $(DEVICE_PATH)/BoardConfigSHRP.mk
 -include vendor/kud/config/recovery.mk
