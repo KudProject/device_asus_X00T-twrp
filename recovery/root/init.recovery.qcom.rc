@@ -1,52 +1,12 @@
+import /init.recovery.qcom_decrypt.rc
+
 on early-init
     mkdir /firmware 0771 system system
-
-on init
-    chmod 0660 /dev/qseecom
-    chown system drmrpc /dev/qseecom
-    chmod 0664 /dev/ion
-    chown system system /dev/ion
 
 on fs
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
-    install_keyring
     mount vfat /dev/block/bootdevice/by-name/modem /firmware ro shortname=lower uid=1000 gid=1000 dmask=227 fmask=337
-    setprop crypto.ready 1
-
-service qseecomd /system/bin/qseecomd
-    user root
-    group root
-    disabled
-    setenv LD_LIBRARY_PATH /vendor/lib64:/system/lib64
-    seclabel u:r:recovery:s0
-
-service keystore_auth /system/bin/keystore_auth
-    oneshot
-    user system
-    group root
-    disabled
-    seclabel u:r:recovery:s0
-
-service keystore /system/bin/keystore /tmp/misc/keystore
-    user root
-    group root drmrpc readproc
-    disabled
-    seclabel u:r:recovery:s0
-
-service gatekeeper-1-0 /system/bin/android.hardware.gatekeeper@1.0-service-qti
-    user root
-    group root
-    disabled
-    setenv LD_LIBRARY_PATH /vendor/lib64:/system/lib64
-    seclabel u:r:recovery:s0
-
-service keymaster-3-0 /system/bin/android.hardware.keymaster@3.0-service-qti
-    user root
-    group root
-    disabled
-    setenv LD_LIBRARY_PATH /vendor/lib64:/system/lib64
-    seclabel u:r:recovery:s0
 
 service vibrator-1-2 /system/bin/vendor.qti.hardware.vibrator@1.2-service
     user root
@@ -69,16 +29,3 @@ on boot
     chown system system /proc/tpd_gesture
     chmod 644 /proc/tpd_gesture
     write /proc/tpd_gesture 1
-
-on property:crypto.ready=0
-    stop qseecomd
-    stop keymaster-3-0
-    stop gatekeeper-1-0
-    stop keystore
-
-on property:crypto.ready=1
-    start qseecomd
-
-on property:vendor.sys.listeners.registered=true
-    start keymaster-3-0
-    start gatekeeper-1-0
